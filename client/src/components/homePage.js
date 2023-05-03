@@ -10,7 +10,7 @@ export default function HomePage() {
     <div id="main-page-container">
     <div id="main-left">
         <div id="title-div">
-            <img id="logo" src="comment.svg" alt=""></img>
+            <img id="logo" src="./images/comment.png" alt=""></img>
             <h1 id="thoughtbook-title-text">ThoughtBook </h1>
         </div>
         
@@ -25,13 +25,13 @@ export default function HomePage() {
         </h5>
 
         <div id="buttons">
-           <Link to='/userhome'> <button id="login-button">Login </button></Link>
+           <Link to='/login'> <button id="login-button">Login </button></Link>
            <Link to='/signup'> <button id="signup-button">Sign-up </button></Link>
         </div>
     </div>
 
     <div id="main-right">
-        <img src="./Having coffee with my dog (2).gif" alt="" srcset=""></img>
+        <img src="./images/Having coffee with my dog (2).gif" alt="" srcset=""></img>
     </div>
 
     </div>

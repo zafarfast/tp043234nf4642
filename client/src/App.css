@@ -65,7 +65,6 @@ header {
   border-radius: 50px;
 }
 
-#main-left {}
 
 #title-div {
   display: flex;
@@ -205,6 +204,10 @@ header {
   margin-top: 10px;
 }
 
+#login-button
+{
+  margin-top: 10px;
+}
 #login-button,
 #follow-button,
 #search-button,
@@ -400,8 +403,6 @@ input {
       margin-bottom: 10px;
       margin: auto;
   }
-
-  #re-generate-button {}
 
   #search-button {
       margin-top: 10px;

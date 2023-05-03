@@ -12,35 +12,37 @@ export default function UserHome() {
             image
             firstName
             id
+            thought
         }
       }
        `;
 
-  const { err, loading, data } = useQuery(QUERY_USERS);
+  const {  data } = useQuery(QUERY_USERS);
 
-  if (loading){
-    console.log(loading)
-  }
+  const findUsers = data?.findUsers || []
+//   if (loading){
+//     console.log(loading)
+//   }
 
-  if(err)
+//   if(err)
+//   {
+//     console.log(err)
+
+//   }
+  if(findUsers)
   {
-    console.log(err)
-
-  }
-  if(data)
-  {
-      console.log(data)
+      console.log(findUsers)
   }
 
     return <>
         <header>
             <div id="title-div-user-home">
-                <img id="logo-main-page" src="comment.svg" alt=""></img>
+                <img id="logo-main-page" src="./images/comment.png" alt=""></img>
                 <h1 id="thoughtbook-title-text-login-page">ThoughtBook </h1>
             </div>
 
             <div id="user-profile-pic">
-                <img id="user-profile-pic" src="user-profile-pic.jpg" alt=""></img>
+                <img id="user-profile-pic" src="./images/user-profile-pic.jpg" alt=""></img>
             </div>
         </header>
 
@@ -58,7 +60,7 @@ export default function UserHome() {
             <p id="user-thought-preview">Having coffee with my dog on a sunny morning. He is looking at me like my bestie </p>
 
             <div id="generated-image">
-                <img src="travelling the world alone.jpg" alt=""></img>
+                <img src="./images/travelling the world alone.jpg" alt=""></img>
                 <br></br>
             </div>
             <div>
@@ -69,13 +71,12 @@ export default function UserHome() {
         </div>
         <div id="thoughts-chain"> 
 
-        {/* <UserPost src={data.findUsers[1].image} thoughtText="Having coffee on Mars" userProfilePic="./user-profile-pic.jpg"/>
-        <UserPost src={data.findUsers[2].image} thoughtText="Feels like sitting alone on a lake side" userProfilePic="./user-profile-pic.jpg"/>
-        <UserPost src={data.findUsers[3].image} thoughtText="Travelling the world alone on a boat" userProfilePic="./user-profile-pic.jpg"/> */}
-
-        {/* <UserPost src='./drinking coffee on mars.jpg' thoughtText="Having coffee on Mars" userProfilePic="./user-profile-pic.jpg"/>
-        <UserPost src='./hut at the lake side.jpg' thoughtText="Feels like sitting alone on a lake side" userProfilePic="./user-profile-pic.jpg"/>
-        <UserPost src='./travelling the world alone.jpg' thoughtText="Travelling the world alone on a boat" userProfilePic="./user-profile-pic.jpg"/> */}
+        <UserPost src={findUsers[0]?.image} thoughtText={findUsers[0]?.thought} userProfilePic="./images/user-profile-pic.jpg"/>
+        <UserPost src={findUsers[1]?.image} thoughtText={findUsers[1]?.thought} userProfilePic="./images/user-profile-pic.jpg"/>
+        <UserPost src={findUsers[2]?.image} thoughtText={findUsers[2]?.thought} userProfilePic="./images/user-profile-pic.jpg"/>
+        <UserPost src={findUsers[0]?.image} thoughtText={findUsers[0]?.thought} userProfilePic="./images/user-profile-pic.jpg"/>
+        <UserPost src={findUsers[1]?.image} thoughtText={findUsers[1]?.thought} userProfilePic="./images/user-profile-pic.jpg"/>
+        <UserPost src={findUsers[2]?.image} thoughtText={findUsers[2]?.thought} userProfilePic="./images/user-profile-pic.jpg"/>
         </div>
     </>
 

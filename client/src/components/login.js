@@ -5,7 +5,7 @@ import Footer from './footer';
 export default function Login() {
     return <>
     <div id="login-form-container">
-        <h1 id="thoughtbook-title-text-login-page">ThoughtBook <img id="logo-login-page" src="comment.png" alt=""></img></h1>
+        <h1 id="thoughtbook-title-text-login-page">ThoughtBook <img id="logo-login-page" src="./images/comment.png" alt=""></img></h1>
         <br></br>
         <form action="">
             <label for="email">Email</label>

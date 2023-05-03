@@ -1,5 +1,11 @@
 import './App.css';
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
+
+import HomePage from './components/homePage'
+import Login from './components/login'
+import Signup from './components/signup'
+import UserHome from './components/userHome';
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,29 +13,28 @@ import {
   createHttpLink,
 } from '@apollo/client';
 
-
-import HomePage from './components/homePage'
-import Login from './components/login'
-import Signup from './components/signup'
-import UserHome from './components/userHome';
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3005/graphql',
+})
 
 const client = new ApolloClient({
-  uri: '/graphql',
+
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
 function App() {
   return (
     <ApolloProvider client={client}>
-    <BrowserRouter>
-      <Routes>
-        <Route path = '/' element={<HomePage />}/>
-        <Route path = '/login' element={<Login />}/>
-        <Route path = '/signup' element={<Signup />}/>
-        <Route path = '/userhome' element={<UserHome />}/>
-      </Routes>
-    </BrowserRouter>
-   </ApolloProvider>
+      <HashRouter>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/userhome' element={<UserHome />} />
+        </Routes>
+      </HashRouter>
+     </ApolloProvider>
   );
 }
 
