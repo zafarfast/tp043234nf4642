@@ -14,44 +14,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-// const Users = [
-//   {
-//     id: 1,
-//     firstName: 'Zafar',
-//     lastName: 'Ahmed',
-//     email: 'zafar@hotmail.com',
-//     image: './images/drinking coffee on mars.jpg',
-//     thought: 'Drinking coffee on Mars'
-
-//   },
-//   {
-//     id: 2,
-//     firstName: 'Anna',
-//     lastName: 'Marcus',
-//     email: 'anna@hotmail.com',
-//     image: './images/travelling the world alone.jpg',
-//     thought: 'Travelling the world alone'
-
-//   },
-//   {
-//     id: 3,
-//     firstName: 'Bryan',
-//     lastName: 'Fazal',
-//     email: 'bryan@hotmail.com',
-//     image: './images/hut at the lake side.jpg',
-//     thought: 'Enjoying serenity at the lakeside'
-
-//   }
-// ]
 const typeDefs = gql`
 type Query
 {
   findUser(email: String!): User
-},
-type Query
-{
   findUsers: [User]
-},
+
+}
+
+
+type Mutation {
+  addUser(email:String!, firstName: String!, lastName: String!, password:String!): User
+  deleteUser(email:String!): User
+  addPost(username:String!, thoughtText: String!, imageUrl: String!): Post
+  deletePost(postId: ID!): Post  
+  addComment(commentBody:String!, commentBy: String!, postId: ID!): Post
+  deleteComment(postId:ID!, commentId:ID!): Post
+
+}
 
 type User
 {
@@ -90,18 +70,87 @@ const resolvers = {
   Query:
   {
     findUser: async (_, args) => {
-      const a = await User.findOne({ email: args.email }).populate({ path: 'posts', populate : {
-        path : 'comments'
-      }, select: '-__v' });
+      const a = await User.findOne({ email: args.email }).populate({
+        path: 'posts', populate: {
+          path: 'comments'
+        }, select: '-__v'
+      });
       console.log(a)
       return a
     },
     findUsers: async () => {
       console.log('Request received')
-      const a = await User.find({}).populate({ path: 'posts', populate : {
-        path : 'comments'
-      }, select: '-__v' });
+      const a = await User.find({}).populate({
+        path: 'posts', populate: {
+          path: 'comments'
+        }, select: '-__v'
+      });
       return a
+    }
+
+  },
+
+  Mutation: {
+
+    //create a new user
+    addUser: async (parent, args) => {
+      return User.create({
+        email: args.email,
+        firstName: args.firstName,
+        lastName: args.lastName,
+        password: args.password,
+        displayPicture: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg',
+        posts: [],
+        followers: [],
+        followed: [],
+      });
+    },
+
+    //delete user from the database
+    deleteUser: async (parent, args) => {
+      return User.deleteOne({ email: args.email });
+    },
+
+    addPost: async (parent, args) => {
+      //create a new post in the database
+      const newPost = await Post.create({
+        username: args.username,
+        thoughtText: args.thoughtText,
+        imageUrl: args.imageUrl,
+      })
+
+      // add the post to User profile
+      const findUser = await User.find({ email: args.username })
+      findUser[0].posts.push(newPost._id)
+      findUser[0].save()
+
+      return newPost;
+    },
+
+    deletePost: async (parent, args) => {
+      return Post.deleteOne({ _id: args.postId });
+    },
+
+    // add comment to the post
+    addComment: async (parent, args) => {
+      const findPost = await Post.find({ username: args.email })
+      const newComment = {
+        commentBody: args.commentBody,
+        commentBy: args.commentBy,
+      }
+      findPost[0].comments.push(newComment)
+      findPost[0].save()
+
+      return findPost[0];
+    },
+
+    deleteComment: async (parent, args) => {
+      const result = await Post.findOneAndUpdate(
+        { _id: args.postId },
+        { $pull: { comments: {_id: args.commentId} } },
+        { new: true },
+      )      
+      return result;
     }
 
   }

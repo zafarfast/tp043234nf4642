@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
+
 const commentsSchema = require('./Comment');
 
 // Schema to create Posts model
