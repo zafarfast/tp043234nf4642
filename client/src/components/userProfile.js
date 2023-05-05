@@ -29,7 +29,7 @@ export default function //Signup() {
                 <input type="password"></input>
                 <br></br>
                 <br></br>
-                <button id="login-button">Signup </button>
+                <button id="login-button">Save Edit</button>
             </form>
         </div>
 
