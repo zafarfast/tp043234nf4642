@@ -42,42 +42,72 @@ export const ADD_POST = gql`
   }
 `;
 
-//   mutation addComment($commentBody: String!, $commentBy: String!, $postId: ID!) {
-//     addComment(commentBody: $commentBody, commentBy: $commentBy, postId: $postId) {
-//       _id
-//       createdAt
-//       imageUrl
-//       thoughtText
-//       username
-//     }
-//   }
+export const ADD_COMMENT = gql`
+  mutation addComment(
+    $commentBody: String! 
+    $commentBy: String! 
+    $postId: ID!
+  ) {
+    addComment(
+      commentBody: $commentBody 
+      commentBy: $commentBy 
+      postId: $postId
+    ) {
+      _id
+      createdAt
+      imageUrl
+      thoughtText
+      username
+    }
+  }
+`;
 
-//   mutation deleteUser($email: String!) {
-//     deleteUser(email: $email) {
-//       _id
-//       displayPicture
-//       email
-//       firstName
-//       lastName
-//     }
-//   }
+export const DELETE_USER = gql`
+  mutation deleteUser(
+    $email: String!
+  ) {
+    deleteUser(
+      email: $email
+      ) {
+        _id
+        displayPicture
+        email
+        firstName
+        lastName
+      }
+  }
+`;
 
-//   mutation deletePost($postId: ID!) {
-//     deletePost(postId: $postId) {
-//       _id
-//       createdAt
-//       imageUrl
-//       thoughtText
-//       username
-//     }
-//   }
+export const DELETE_POST = gql`
+  mutation deletePost(
+    $postId: ID!
+    ) {
+      deletePost(
+        postId: $postId
+        ) {
+          _id
+          createdAt
+          imageUrl
+          thoughtText
+          username
+        }
+    }
+`;
 
-//   mutation deleteComment($postId: ID!, $commentId: ID!) {
-//     deleteComment(postId: $postId, commentId: $commentId) {
-//       _id
-//       createdAt
-//       imageUrl
-//       thoughtText
-//       username
-//     }
-//   }
+export const DELETE_COMMENT = gql`
+  mutation deleteComment(
+    $postId: ID! 
+    $commentId: ID!
+    ) {
+      deleteComment(
+        postId: $postId
+        commentId: $commentId
+        ) {
+          _id
+          createdAt
+          imageUrl
+          thoughtText
+          username
+        }
+      }
+`;

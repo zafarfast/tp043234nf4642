@@ -1,12 +1,27 @@
 import React, {useState} from "react";
 import Footer from "./footer";
+
 // import the mutation and the useMutation hook
-import {ADD_USER} from "../utils/mutations";
+
+import {ADD_COMMENT, ADD_USER, DELETE_COMMENT, DELETE_POST, DELETE_USER} from "../utils/mutations";
+// import { ADD_POST } from "../utils/mutations";
+// import { ADD_COMMENT } from "../utils/mutations";
+// import { DELETE_USER } from "../utils/mutations";
+// import { DELETE_POST } from "../utils/mutations";
+// import { DELETE_COMMENT } from "../utils/mutations";
 import {useMutation} from "@apollo/client";
+
+
 
 export default function Signup() {
   // create a mutation function
   const [addUser] = useMutation(ADD_USER);
+//   const [addPost] = useMutation(ADD_POST);
+// const [addComment] = useMutation(ADD_COMMENT);
+// const [deleteUser] = useMutation(DELETE_USER);
+// const [deletePost] = useMutation(DELETE_POST);
+// const [deleteComment] = useMutation(DELETE_COMMENT);
+
 
   // create a state for form values
   const [formData, setFormData] = useState({
