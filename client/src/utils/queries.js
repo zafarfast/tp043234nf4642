@@ -88,5 +88,4 @@ query findUser($email: String!) {
       }
     }
   }
-
 `;
