@@ -5,6 +5,7 @@ import HomePage from './components/homePage'
 import Login from './components/login'
 import Signup from './components/signup'
 import UserHome from './components/userHome';
+import UserProfile from './components/userProfile';
 
 import {
   ApolloClient,
@@ -32,6 +33,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/userhome' element={<UserHome />} />
+          <Route path='/userProfile' element={<UserProfile />} />
         </Routes>
       </HashRouter>
      </ApolloProvider>
