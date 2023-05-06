@@ -32,7 +32,8 @@ type Mutation {
   deletePost(postId: ID!): Post  
   addComment(commentBody:String!, commentBy: String!, postId: ID!): Post
   deleteComment(postId:ID!, commentId:ID!): Post
-  userLogin(username:String!, password:String!) : Boolean
+  userLogin(username:String!, password:String!) : Boolean  editUser(userId: ID!, email:String!, firstName: String!, lastName: String!, password:String!): User
+
 }
 
 type User
@@ -117,6 +118,45 @@ const resolvers = {
         followers: [],
         followed: [],
       });
+    },
+
+    editUser: async (parent, args) => {
+
+      const update = {}
+
+      if(args.password == "") {
+        console.log("Not updating password");
+        update = {
+          email: args.email,
+          firstName: args.firstName,
+          lastName: args.lastName,
+        }
+      } else {
+        update = {
+          email: args.email,
+          firstName: args.firstName,
+          lastName: args.lastName,
+          password: args.password,
+            // displayPicture: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg',
+
+        }
+      }
+
+      return User.findOneAndUpdate(
+        {
+          _id: args.userId
+        },
+        update
+      );
+
+      // email: args.email,
+      // firstName: args.firstName,
+      // lastName: args.lastName,
+      // password: args.password,
+      // displayPicture: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg',
+      // posts: [],
+      // followers: [],
+      // followed: [],
     },
 
     //delete user from the database
