@@ -19,6 +19,8 @@ type Query
 {
   findUser(email: String!): User
   findUsers: [User]
+  getfollowers: [User]
+  getfollowed: [User]
 
 }
 
@@ -30,7 +32,7 @@ type Mutation {
   deletePost(postId: ID!): Post  
   addComment(commentBody:String!, commentBy: String!, postId: ID!): Post
   deleteComment(postId:ID!, commentId:ID!): Post
-
+  userLogin(username:String!, password:String!) : Boolean
 }
 
 type User
@@ -86,7 +88,18 @@ const resolvers = {
         }, select: '-__v'
       });
       return a
+    },
+    getfollowers: async (_, args) => {
+      const a = await User.findOne({ email: args.email }).populate({path: 'followers', select: '-__v' });
+      console.log(a)
+      return a
+    },
+    getfollowed: async (_, args) => {
+      const a = await User.findOne({ email: args.email }).populate({path: 'followers', select: '-__v' });
+      console.log(a)
+      return a
     }
+
 
   },
 
@@ -151,7 +164,16 @@ const resolvers = {
         { new: true },
       )      
       return result;
-    }
+    },
+
+    userLogin: async(parent, args) => {
+      console.log(args)
+      const isLoginValid = false
+      const findUser = await User.find({email: args.username})
+      console.log(findUser[0])
+      if (findUser[0].email ===  args.username && findUser[0].password === args.password)
+      { return true } else {return false}
+      }
 
   }
 }

@@ -6,11 +6,11 @@ async function addPost()
 {
   await User.collection.drop()
   await Post.collection.drop()
-  const newUser = new User({ email: `zafar@hotmail.com`, firstName:"Zafar", lastName:"Ahmed", password:"thisispassword", displayPicture:"ggggg", posts:[], followed:[], followers:[]});
+  const newUser = new User({ email: `zafar@hotmail.com`, firstName:"Zafar", lastName:"Ahmed", password:"thisispassword", displayPicture:"./images/user-profile-pic.jpg", posts:[], followed:[], followers:[]});
   await newUser.save();
-  const newUser2 = new User({ email: `bryan@hotmail.com`, firstName:"Bryan", lastName:"Afzal", password:"thisispassword", displayPicture:"ggggg", posts:[], followed:[], followers:[]});
+  const newUser2 = new User({ email: `bryan@hotmail.com`, firstName:"Bryan", lastName:"Afzal", password:"thisispassword", displayPicture:"./images/user-profile-pic.jpg", posts:[], followed:[], followers:[]});
   await newUser2.save();
-  const newUser3 = new User({ email: `anna@hotmail.com`, firstName:"Anna", lastName:"Marcus", password:"thisispassword", displayPicture:"ggggg", posts:[], followed:[], followers:[]});
+  const newUser3 = new User({ email: `anna@hotmail.com`, firstName:"Anna", lastName:"Marcus", password:"thisispassword", displayPicture:"./images/user-profile-pic.jpg", posts:[], followed:[], followers:[]});
   await newUser3.save();
   const newPost = new Post({ username: "zafar@hotmail.com", thoughtText: "Enjoying serenity at lake side",imageUrl: "./images/hut at the lake side.jpg" ,likes:[],comments:[]});
   await newPost.save();

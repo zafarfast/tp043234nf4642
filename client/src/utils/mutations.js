@@ -110,4 +110,11 @@ export const DELETE_COMMENT = gql`
           username
         }
       }
+
 `;
+
+export const USER_LOGIN = gql`
+mutation Mutation($username: String!, $password: String!) {
+  userLogin(username: $username, password: $password)
+}
+`
