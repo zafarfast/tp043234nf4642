@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Footer from './footer';
+import { Link} from 'react-router-dom'
 
 import { GET_USER } from '../utils/queries';
 import { EDIT_USER } from '../utils/mutations';
@@ -52,7 +53,7 @@ export default function UserProfile() {
             }
         })
 
-        window.location.href = "/userProfile"
+        window.location.href = "/userHome"
 
     }
 
@@ -71,9 +72,10 @@ export default function UserProfile() {
         )
     }
 
+
     return <>
         <div id="signup-form-container">
-            <h1 id="thoughtbook-title-text-login-page">Update User <img id="logo-login-page" src="./images/comment.png" alt=""></img></h1>
+        <Link to='/userHome'> <h1 id="thoughtbook-title-text-login-page">User Profile <img id="logo-login-page" src="./images/comment.png" alt=""></img></h1></Link>
             <br></br>
             <form onSubmit={handleSubmit}>
                 <label for="email">First Name</label>

@@ -42,7 +42,7 @@ export default function UserHome() {
             </div>
 
             <div id="user-profile-pic">
-                <img id="user-profile-pic" src="./images/user-profile-pic.jpg" alt=""></img>
+            <Link to='/userProfile'> <img id="user-profile-pic" src="./images/user-profile-pic.jpg" alt=""></img></Link>
             </div>
         </header>
 
