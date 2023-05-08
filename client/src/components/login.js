@@ -4,6 +4,8 @@ import {useMutation} from "@apollo/client";
 
 import {USER_LOGIN} from "../utils/mutations";
 
+import Auth from "../utils/auth"
+
 export default function Login() {
 
     const [formData, setFormData] = useState({
@@ -26,28 +28,36 @@ export default function Login() {
             },
           });
     
-          console.log(response);
+          console.log(response.data.userLogin.token);
+          Auth.login(response.data.userLogin.token)
     
-          if (response === true) {window.location.href = "#/userHome"} else {window.location.href = "/homePage"};
+          // if (response === true) {window.location.href = "#/userHome"} else {window.location.href = "/homePage"};
         } catch (err) {
           console.log(err);
         }
+      }
+
+      function handleChange (event) {
+        setFormData({
+          ...formData,
+          [event.target.name]: event.target.value
+        })
       }
     
     return <>
     <div id="login-form-container">
         <h1 id="thoughtbook-title-text-login-page">ThoughtBook <img id="logo-login-page" src="./images/comment.png" alt=""></img></h1>
         <br></br>
-        <form action="">
+        <form onSubmit={handleSubmit}>
             <label for="email">Email</label>
             <br></br>
-            <input type="text"></input>
+            <input type="text" name="email" onChange={handleChange}></input>
             <br></br>
             <br></br>
-            <label for="password">Password</label>
+            <label for="password" >Password</label>
             <br></br>
             
-            <input type="password"></input>
+            <input type="password" name="password" onChange={handleChange}></input>
             <br></br>
             <button id="login-button">Login </button>
         </form>

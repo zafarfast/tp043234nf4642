@@ -7,6 +7,7 @@ const User = require('./models/User')
 const Post = require('./models/Post')
 const Comment = require('./models/Comment')
 const addPost = require("./seed/seed")
+const {signToken, authMiddleware} = require("./utils/auth")
 
 const PORT = process.env.PORT || 3005;
 const app = express();
@@ -17,7 +18,7 @@ app.use(express.json());
 const typeDefs = gql`
 type Query
 {
-  findUser(email: String!): User
+  findUser: User
   findUsers: [User]
   getfollowers: [User]
   getfollowed: [User]
@@ -32,8 +33,14 @@ type Mutation {
   deletePost(postId: ID!): Post  
   addComment(commentBody:String!, commentBy: String!, postId: ID!): Post
   deleteComment(postId:ID!, commentId:ID!): Post
-  userLogin(username:String!, password:String!) : Boolean  editUser(userId: ID!, email:String!, firstName: String!, lastName: String!, password:String!): User
+  userLogin(email:String!, password:String!) : Auth  
+  editUser(userId: ID!, email:String!, firstName: String!, lastName: String!, password:String!): User
 
+}
+
+type Auth {
+  user: User
+  token: String
 }
 
 type User
@@ -72,8 +79,8 @@ type Comment
 const resolvers = {
   Query:
   {
-    findUser: async (_, args) => {
-      const a = await User.findOne({ email: args.email }).populate({
+    findUser: async (_, args, context) => {
+      const a = await User.findOne({ email: context.user.email }).populate({
         path: 'posts', populate: {
           path: 'comments'
         }, select: '-__v'
@@ -209,10 +216,22 @@ const resolvers = {
     userLogin: async(parent, args) => {
       console.log(args)
       const isLoginValid = false
-      const findUser = await User.find({email: args.username})
+      const findUser = await User.find({email: args.email})
       console.log(findUser[0])
-      if (findUser[0].email ===  args.username && findUser[0].password === args.password)
-      { return true } else {return false}
+      if (findUser[0]?.email ===  args.email && findUser[0]?.password === args.password){ 
+        return {
+          user: findUser[0],
+          token: signToken({
+            email:  findUser[0].email,
+            _id:  findUser[0]._id
+          })
+        }
+      }  else {
+        return {
+          user: null,
+          token: null
+        }
+      }
       }
 
   }
@@ -221,6 +240,7 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: authMiddleware
 });
 
 

@@ -5,17 +5,12 @@ import { GET_USER } from '../utils/queries';
 import { EDIT_USER } from '../utils/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 
-import Auth from "../utils/auth"
+// import Auth from "../utils/auth"
 
 
 export default function UserProfile() {
 
-    const {loading, data} = useQuery(GET_USER, {
-        variables: {
-            email: "zafar123@hotmail.com"
-            // email: Auth.getUser().email
-        }
-    })
+    const {loading, data} = useQuery(GET_USER)
 
     const userData = data?.findUser || {}
 
@@ -36,6 +31,8 @@ export default function UserProfile() {
             "lastName": userData.lastName,
             "password": ""
         })
+
+        console.log(userData)
     }, [userData])
 
     const [editUser] = useMutation(EDIT_USER)
