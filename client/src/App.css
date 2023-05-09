@@ -213,6 +213,7 @@ header {
 #search-button,
 #post-button,
 #re-generate-button,
+#donate-button,
 #signup-button {
   color: azure;
   border-radius: 5px;
