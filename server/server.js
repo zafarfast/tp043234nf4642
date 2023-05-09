@@ -16,7 +16,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware
-
 });
 
 app.use(express.static(path.join(__dirname, '../client/build/')));

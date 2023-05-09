@@ -5,7 +5,7 @@ import { GET_USER } from '../utils/queries';
 import { EDIT_USER } from '../utils/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 
-import Auth from "../utils/auth"
+// import Auth from "../utils/auth"
 
 
 export default function UserProfile() {
@@ -36,6 +36,8 @@ export default function UserProfile() {
             "lastName": userData.lastName,
             "password": ""
         })
+
+        console.log(userData)
     }, [userData])
 
     const [editUser] = useMutation(EDIT_USER)
