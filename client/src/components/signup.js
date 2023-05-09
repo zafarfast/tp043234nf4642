@@ -65,6 +65,19 @@ export default function Signup() {
       [name]: event.target.value,
     });
 
+    // if (name == "firstName") {
+    //   setFormData({
+    //     ...formData,
+    //     firstName: event.target.value,
+    //   });
+    // }
+
+    // if (name == "lastName") {
+    //     setFormData({
+    //       ...formData,
+    //       lastName: event.target.value,
+    //     });
+    //   }
   }
 
   return (

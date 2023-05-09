@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Footer from './footer';
+import { Link} from 'react-router-dom'
 
 import { GET_USER } from '../utils/queries';
 import { EDIT_USER } from '../utils/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 
 // import Auth from "../utils/auth"
+import jwt_decode from "jwt-decode";
 
 
 export default function UserProfile() {
 
-    const {loading, data} = useQuery(GET_USER, {
-        variables: {
-            email: "zafar@hotmail.com"
-            // email: Auth.getUser().email
-        }
-    })
+    const token1 = localStorage.getItem('id_token')
+    const decoded_token = jwt_decode(token1);
+    const email = decoded_token.data.email
+
+    const {loading, data} = useQuery(GET_USER,
+        {
+            variables: {
+                email:email
+            }
+        })
 
     const userData = data?.findUser || {}
 
@@ -57,7 +63,7 @@ export default function UserProfile() {
             }
         })
 
-        window.location.href = "#/userProfile"
+        window.location.href = "#/userHome"
 
     }
 
@@ -76,9 +82,10 @@ export default function UserProfile() {
         )
     }
 
+
     return <>
         <div id="signup-form-container">
-            <h1 id="thoughtbook-title-text-login-page">Update User <img id="logo-login-page" src="./images/logo.svg" alt=""></img></h1>
+        <Link to='/userHome'> <h1 id="thoughtbook-title-text-login-page">User Profile <img id="logo-login-page" src="./images/comment.png" alt=""></img></h1></Link>
             <br></br>
             <form onSubmit={handleSubmit}>
                 <label for="email">First Name</label>

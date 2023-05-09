@@ -5,21 +5,13 @@ const User = require('../models/User')
 const Post = require('../models/Post')
 const Comment = require('../models/Comment')
 const addPost = require("../seed/seed")
+const {signToken, authMiddleware} = require("../utils/auth")
 
 const resolvers = {
     Query:
     {
-      findUser: async (_, args) => {
-        const a = await User.findOne({ email: args.email }).populate({
-          path: 'posts', populate: {
-            path: 'comments'
-          }, select: '-__v'
-        });
-        console.log(a)
-        return a
-      },
-      // findUser: async (_, args, context) => {
-      //   const a = await User.findOne({ email: context.user.email }).populate({
+      // findUser: async (_, args,) => {
+      //   const a = await User.findOne({ email: args.email }).populate({
       //     path: 'posts', populate: {
       //       path: 'comments'
       //     }, select: '-__v'
@@ -27,6 +19,15 @@ const resolvers = {
       //   console.log(a)
       //   return a
       // },
+      findUser: async (_, args, context) => {
+        const a = await User.findOne({ email: context.user.email }).populate({
+          path: 'posts', populate: {
+            path: 'comments'
+          }, select: '-__v'
+        });
+        console.log(a)
+        return a
+      },
       findUsers: async () => {
         console.log('Request received')
         const a = await User.find({}).populate({
@@ -91,7 +92,7 @@ const resolvers = {
   
         return User.findOneAndUpdate(
           {
-            _id: args.userId
+            email: args.email
           },
           update
         );
@@ -162,18 +163,60 @@ const resolvers = {
   
       },
   
+      // userLogin: async(parent, args) => {
+      //   console.log(args)
+      //   const isLoginValid = false
+      //   const findUser = await User.find({email: args.email})
+      //   console.log(findUser[0])
+      //   if (findUser[0]?.email ===  args.email && findUser[0]?.password === args.password){ 
+      //     return {
+      //       user: findUser[0],
+      //       token: signToken({
+      //         email:  findUser[0].email,
+      //         _id:  findUser[0]._id
+      //       })
+      //     }
+      //   }  else {
+      //     return {
+      //       user: null,
+      //       token: null
+      //     }
+      //   }
+      //   }
+  
       userLogin: async(parent, args) => {
         console.log(args)
         const isLoginValid = false
-        const findUser = await User.find({email: args.username})
+        const findUser = await User.find({email: args.email})
         console.log(findUser[0])
-        if (findUser[0] != null)
-        {
-          if ((findUser[0].email ===  args.username) && (findUser[0].password === args.password))
-          { return true } else {return false}
-        } else return false
-  
+        if (findUser[0]?.email ===  args.email && findUser[0]?.password === args.password){ 
+          return {
+            user: findUser[0],
+            token: signToken({
+              email:  findUser[0].email,
+              _id:  findUser[0]._id
+            })
+          }
+        }  else {
+          return {
+            user: null,
+            token: null
+          }
         }
+        }
+  
+      // userLogin: async(parent, args) => {
+      //   console.log(args)
+      //   const isLoginValid = false
+      //   const findUser = await User.find({email: args.username})
+      //   console.log(findUser[0])
+      //   if (findUser[0] != null)
+      //   {
+      //     if ((findUser[0].email ===  args.username) && (findUser[0].password === args.password))
+      //     { return true } else {return false}
+      //   } else return false
+  
+      //   }
   
     }
   }

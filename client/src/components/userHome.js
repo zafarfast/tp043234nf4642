@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
+import jwt_decode from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
 
 import { Link } from 'react-router-dom'
 import UserPost from './userPost'
@@ -7,7 +9,10 @@ import Postschain from './postsChain'
 
 export default function UserHome() {
 
-    const user = localStorage.getItem('userEmail')
+    const token = localStorage.getItem('id_token')
+
+    const decoded_token = jwt_decode(token);
+    const user = decoded_token.data.email
 
 
     const RENDER_THOUGHT = gql`
@@ -95,7 +100,9 @@ export default function UserHome() {
         settutu(Math.floor(Math.random()*10))
     }
 
-    const userEmail = localStorage.getItem("userEmail")
+    // const userEmail = localStorage.getItem("userEmail")
+    const userEmail = decoded_token.data.email
+
 
     const QUERY_USER = gql`
     query Query($email: String!) {
@@ -156,7 +163,8 @@ export default function UserHome() {
             </div>
 
             <div id="user-profile-pic">
-            <Link to='/userProfile'> <img id="user-profile-pic" src={findUser?.displayPicture} alt=""></img> </Link>
+            <Link to='/userProfile'> <img id="user-profile-pic" src={findUser?.displayPicture} alt=""></img></Link>
+
             </div>
         </header>
 

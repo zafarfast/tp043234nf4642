@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import Footer from './footer';
 import { useMutation } from "@apollo/client";
 
@@ -7,6 +10,7 @@ import { USER_LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth"
 
 export default function Login() {
+    const navigate = useNavigate();
 
     const [loginErrorMessage, setloginErrorMessage] = useState('')
     const [formData, setFormData] = useState({
@@ -17,33 +21,51 @@ export default function Login() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        let response = null;
+        // let response = null;
+        // try {
+        try {
+            const response = await userlogin({
+                variables: {
+                    email: formData.email,
+                    password: formData.password,
+                },
+            });
+            console.log(`Form Data: ${formData}`);
+            console.log(response?.data.userLogin);
+            // Auth.login(response.data.userLogin.token)
+            if (response.data.userLogin.token !== null)
+            {
+            Auth.login(response.data.userLogin.token)
+            navigate('/userHome');
 
-        response = await userlogin({
-            variables: {
-                "username": formData.email,
-                "password": formData.password,
-            },
-        });
-        console.log(`Form Data: ${formData}`);
+            }
+            else
+            {
+            setloginErrorMessage("Username of password is incorrect") 
 
-        console.log(response?.data.userLogin);
+            }
 
-        if (response?.data.userLogin === true) {
-            localStorage.setItem("userEmail", formData.email);
-            window.location.href = "#/userHome"
+            navigate('/userHome');
+            //     } catch (err) {
+            //     console.log(err);
+            //   }
+        } catch (err) {
+            console.log(err);
         }
-        else if (response?.data.userLogin === false) { setloginErrorMessage("Username of password is incorrect") } else { console.log("Response not available") }
+
+        //     if (response?.data.userLogin === true) {
+        //         localStorage.setItem("userEmail", formData.email);
+        //         window.location.href = "#/userHome"
+        //     }
+        //     else if (response?.data.userLogin === false) { setloginErrorMessage("Username of password is incorrect") } else { console.log("Response not available") }
+        // }
+        // console.log(formData)
     }
-
-
     function handleChange(event) {
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
         })
-
-        // console.log(formData)
     }
 
     return <>
@@ -53,17 +75,17 @@ export default function Login() {
             <form onSubmit={handleSubmit}>
                 <label for="email">Email</label>
                 <br></br>
-                <input name="email" value={formData.firstName} onChange={handleChange} type="text"></input>
+                <input type="text" name="email" onChange={handleChange}></input>
                 <br></br>
                 <br></br>
-                <label for="password">Password</label>
+                <label for="password" >Password</label>
                 <br></br>
-                <input name="password" value={formData.firstName} onChange={handleChange} type="password"></input>
+
+                <input type="password" name="password" onChange={handleChange}></input>
                 <br></br>
-                <p id="signup-invite-text">{loginErrorMessage}</p>
                 <button id="login-button">Login </button>
             </form>
-       
+
             <p id="signup-invite-text">Dont have an account? <a href="#/signup">Sign-up</a></p>
         </div>
 

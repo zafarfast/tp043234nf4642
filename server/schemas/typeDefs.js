@@ -1,4 +1,5 @@
 const { gql } = require('apollo-server-express');
+  // findUser(email: String!): User
 
 const typeDefs = gql`
 type Query
@@ -18,8 +19,8 @@ type Mutation {
   deletePost(postId: ID!): Post  
   addComment(commentBody:String!, commentBy: String!, postId: ID!): Post
   deleteComment(postId:ID!, commentId:ID!): Post
-  userLogin(username:String!, password:String!) : Boolean
-  editUser(userId: ID!, email:String!, firstName: String!, lastName: String!, password:String!): User
+  userLogin(email:String!, password:String!) : Auth
+  editUser(email:String, firstName: String, lastName: String, password:String): User
   getUserThought(thoughtText: String!) : String
 }
 

@@ -3,9 +3,9 @@ const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 const path = require('path')
 const addPost = require("./seed/seed")
-const typeDefs = require('./schemas/typeDefs')
+const typeDefs = require('./schemas/typedefs')
 const resolvers = require('./schemas/resolvers')
-const {authMiddleware} = require("./utils/auth")
+const {signToken, authMiddleware} = require("./utils/auth")
 
 const PORT = process.env.PORT || 3005;
 const app = express();
@@ -15,7 +15,9 @@ app.use(express.json());
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  // context: authMiddleware
   context: authMiddleware
+
 });
 
 app.use(express.static(path.join(__dirname, '../client/build/')));
@@ -35,5 +37,5 @@ db.once('open', async () => {
   })
 })
 
-//seed the database
+// seed the database
 addPost()
