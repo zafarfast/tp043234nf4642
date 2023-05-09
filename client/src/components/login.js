@@ -34,6 +34,7 @@ export default function Login() {
           Auth.login(response.data.userLogin.token)
     
           navigate('/userHome');
+          // if (response.data.userLogin.email === formData.email) {window.location.href = "/userHome"} else {window.location.href = "/homePage"};
         } catch (err) {
           console.log(err);
         }
