@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from './footer';
 import {useMutation} from "@apollo/client";
 
@@ -7,6 +8,7 @@ import {USER_LOGIN} from "../utils/mutations";
 import Auth from "../utils/auth"
 
 export default function Login() {
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         email: "",
@@ -31,7 +33,7 @@ export default function Login() {
           console.log(response.data.userLogin.token);
           Auth.login(response.data.userLogin.token)
     
-          // if (response === true) {window.location.href = "#/userHome"} else {window.location.href = "/homePage"};
+          navigate('/userHome');
         } catch (err) {
           console.log(err);
         }
