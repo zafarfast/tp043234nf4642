@@ -123,3 +123,8 @@ mutation editUser($userId: ID!, $email: String!, $firstName: String!, $lastName:
     lastName
   }
 }`
+
+export const USER_LOGIN = gql`
+mutation UserLogin($username: String!, $password: String!) {
+  userLogin(username: $username, password: $password)
+}`

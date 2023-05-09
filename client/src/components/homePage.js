@@ -10,7 +10,7 @@ export default function HomePage() {
     <div id="main-page-container">
     <div id="main-left">
         <div id="title-div">
-            <img id="logo" src="./images/comment.png" alt=""></img>
+            <img id="logo" src="./images/logo.svg" alt=""></img>
             <h1 id="thoughtbook-title-text">ThoughtBook </h1>
         </div>
         

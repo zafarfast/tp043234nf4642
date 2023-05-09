@@ -12,7 +12,7 @@ export default function UserProfile() {
 
     const {loading, data} = useQuery(GET_USER, {
         variables: {
-            email: "zafar123@hotmail.com"
+            email: "zafar@hotmail.com"
             // email: Auth.getUser().email
         }
     })
@@ -55,7 +55,7 @@ export default function UserProfile() {
             }
         })
 
-        window.location.href = "/userProfile"
+        window.location.href = "#/userProfile"
 
     }
 
@@ -76,7 +76,7 @@ export default function UserProfile() {
 
     return <>
         <div id="signup-form-container">
-            <h1 id="thoughtbook-title-text-login-page">Update User <img id="logo-login-page" src="./images/comment.png" alt=""></img></h1>
+            <h1 id="thoughtbook-title-text-login-page">Update User <img id="logo-login-page" src="./images/logo.svg" alt=""></img></h1>
             <br></br>
             <form onSubmit={handleSubmit}>
                 <label for="email">First Name</label>
