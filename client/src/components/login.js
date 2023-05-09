@@ -26,19 +26,34 @@ export default function Login() {
           const response = await userlogin({
             variables: {
               email: formData.email,
-              password: formData.password,
-            },
+              password: formData.password
+            }
           });
     
           console.log(response.data.userLogin.token);
           Auth.login(response.data.userLogin.token)
     
-          navigate('/userHome');
-          // if (response.data.userLogin.email === formData.email) {window.location.href = "/userHome"} else {window.location.href = "/homePage"};
-        } catch (err) {
-          console.log(err);
+      //     navigate('/userHome');
+      //     // if (response.data.userLogin.email === formData.email) {window.location.href = "/userHome"} else {window.location.href = "/homePage"};
+      //   } catch (err) {
+      //     console.log(err);
+      //   }
+      // }
+
+         // Handle redirection conditionally
+         if (response.data.userLogin.token) {
+              navigate('/userHome');
+            } else {
+              // Display a web alert if authentication fails
+              alert('Email or Password is incorrect');
+            }
+          } catch (err) {
+            console.log(err);
+            // Display a web alert if authentication fails
+            alert('Email or Password is incorrect');
+          }
         }
-      }
+      
 
       function handleChange (event) {
         setFormData({
