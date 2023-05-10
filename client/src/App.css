@@ -64,6 +64,12 @@ header {
   width: 70px;
   border-radius: 50px;
 }
+#user-profile-pic_userprofilepage {
+  margin-top: 5px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50px;
+}
 
 
 #title-div {
@@ -208,7 +214,14 @@ header {
 {
   margin-top: 10px;
 }
+
+#login-button2
+{
+  margin-top: 0px;
+}
+
 #login-button,
+#login-button2,
 #follow-button,
 #search-button,
 #post-button,
@@ -227,6 +240,7 @@ header {
 
 #login-button:hover,
 #follow-button:hover,
+#login-button2:hover,
 #search-button:hover,
 #post-button:hover,
 #re-generate-button:hover,
@@ -310,9 +324,9 @@ label {
 
 #signup-form-container {
   border-radius: 5px;
-  height: 430px;
+  height: 480px;
   width: 300px;
-  margin-top: 100px;
+  margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
   border: solid 2px #590e4c;
@@ -347,7 +361,7 @@ label {
 }
 
 input {
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 #footer {

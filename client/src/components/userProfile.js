@@ -72,6 +72,12 @@ export default function UserProfile() {
   return (
     <>
       <div id="signup-form-container">
+      <img
+              id="user-profile-pic_userprofilepage"
+              src={userData.displayPicture}
+              alt=""
+       ></img>
+
         <Link to="/userHome">
           {" "}
           <h1 id="thoughtbook-title-text-login-page">
@@ -121,7 +127,7 @@ export default function UserProfile() {
           ></input>
           <br></br>
           <br></br>
-          <button id="login-button">Save Edit</button>
+          <button id="login-button2">Save Edit</button>
         </form>
       </div>
 
