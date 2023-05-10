@@ -44,13 +44,13 @@ export const ADD_POST = gql`
 
 export const ADD_COMMENT = gql`
   mutation addComment(
-    $commentBody: String! 
-    $commentBy: String! 
+    $commentBody: String!
+    $commentBy: String!
     $postId: ID!
   ) {
     addComment(
-      commentBody: $commentBody 
-      commentBy: $commentBy 
+      commentBody: $commentBody
+      commentBy: $commentBy
       postId: $postId
     ) {
       _id
@@ -63,66 +63,62 @@ export const ADD_COMMENT = gql`
 `;
 
 export const DELETE_USER = gql`
-  mutation deleteUser(
-    $email: String!
-  ) {
-    deleteUser(
-      email: $email
-      ) {
-        _id
-        displayPicture
-        email
-        firstName
-        lastName
-      }
+  mutation deleteUser($email: String!) {
+    deleteUser(email: $email) {
+      _id
+      displayPicture
+      email
+      firstName
+      lastName
+    }
   }
 `;
 
 export const DELETE_POST = gql`
-  mutation deletePost(
-    $postId: ID!
-    ) {
-      deletePost(
-        postId: $postId
-        ) {
-          _id
-          createdAt
-          imageUrl
-          thoughtText
-          username
-        }
+  mutation deletePost($postId: ID!) {
+    deletePost(postId: $postId) {
+      _id
+      createdAt
+      imageUrl
+      thoughtText
+      username
     }
+  }
 `;
 
 export const DELETE_COMMENT = gql`
-  mutation deleteComment(
-    $postId: ID! 
-    $commentId: ID!
-    ) {
-      deleteComment(
-        postId: $postId
-        commentId: $commentId
-        ) {
-          _id
-          createdAt
-          imageUrl
-          thoughtText
-          username
-        }
-      }
-
+  mutation deleteComment($postId: ID!, $commentId: ID!) {
+    deleteComment(postId: $postId, commentId: $commentId) {
+      _id
+      createdAt
+      imageUrl
+      thoughtText
+      username
+    }
+  }
 `;
 
 export const EDIT_USER = gql`
-mutation editUser($userId: ID!, $email: String!, $firstName: String!, $lastName: String!, $password: String!) {
-  editUser(userId: $userId, email: $email, firstName: $firstName, lastName: $lastName, password: $password) {
-    _id
-    displayPicture
-    email
-    firstName
-    lastName
+  mutation editUser(
+    $email: String!
+    $firstName: String!
+    $lastName: String!
+    $password: String!
+  ) {
+    editUser(
+      email: $email
+      firstName: $firstName
+      lastName: $lastName
+      password: $password
+    ) {
+      _id
+      displayPicture
+      email
+      firstName
+      lastName
+    }
   }
-}`
+`;
 
 // export const USER_LOGIN = gql`
 // mutation UserLogin($username: String!, $password: String!) {
@@ -130,12 +126,13 @@ mutation editUser($userId: ID!, $email: String!, $firstName: String!, $lastName:
 // }`
 
 export const USER_LOGIN = gql`
-mutation userLogin($email: String!, $password: String!) {
-  userLogin(email: $email, password: $password) {
-    token
-    user {
-      _id
-      email
+  mutation userLogin($email: String!, $password: String!) {
+    userLogin(email: $email, password: $password) {
+      token
+      user {
+        _id
+        email
+      }
     }
   }
-}`
+`;
