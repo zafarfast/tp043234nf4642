@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 export default function UserPost(props)
 {
 return <>
-    <div id="user-thought-container">
+    <div data-id={props.id} id="user-thought-container">
         <div id="user-thought-header">
             <img id="user-profile-pic" src={props.userProfilePic} alt=""></img>
             <p id="user-thought">{props.thoughtText}</p>

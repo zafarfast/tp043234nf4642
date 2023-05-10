@@ -39,6 +39,7 @@ export default function HomePage() {
               {" "}
               <button id="signup-button">Sign-up </button>
             </Link>
+            
           </div>
         </div>
 

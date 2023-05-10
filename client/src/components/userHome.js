@@ -114,6 +114,7 @@ export default function UserHome() {
       },
     });
     settutu(Math.floor(Math.random() * 10));
+    window.location.reload('#/userHome')
   }
 
   // const userEmail = localStorage.getItem("userEmail")
@@ -135,6 +136,7 @@ export default function UserHome() {
           posts.push({
             ...findUsers[i].posts[j],
             displayPicture: findUsers[i].displayPicture,
+            _id:findUsers[i]._id
           });
         }
       }

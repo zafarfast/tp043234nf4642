@@ -7,7 +7,7 @@ const StripeButton = () => {
 
   return (
     <div>
-      <button id="donate-button" onClick={handleClick}>Donate</button>
+      <button id="donate-button2" onClick={handleClick}>Support the project</button>
     </div>
   );
 };
