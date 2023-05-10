@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import Footer from "./footer";
 import StripeButton from "./stripe";
 
+
 export default function HomePage() {
   const handleStripeSuccess = () => {
     console.log("success");
