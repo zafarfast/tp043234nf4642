@@ -85,7 +85,7 @@ export default function Signup() {
       <div id="signup-form-container">
         <h1 id="thoughtbook-title-text-login-page">
           ThoughtBook{" "}
-          <img id="logo-login-page" src="./images/comment.png" alt=""></img>
+          <img id="logo-login-page" src="./images/logo.svg" alt=""></img>
         </h1>
         <br></br>
         <form onSubmit={handleSubmit}>

@@ -82,7 +82,7 @@ export default function UserProfile() {
           {" "}
           <h1 id="thoughtbook-title-text-login-page">
             User Profile{" "}
-            <img id="logo-login-page" src="./images/comment.png" alt=""></img>
+            <img id="logo-login-page" src="./images/logo.svg" alt=""></img>
           </h1>
         </Link>
         <br></br>
