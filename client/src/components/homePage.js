@@ -8,11 +8,12 @@ import StripeButton from "./stripe";
 export default function HomePage() {
   const token = localStorage.getItem("id_token");
 
-  if (token) {
-    // useNavigate("/login");
-    window.location.href = "#/userHome";
-    window.location.reload()
-  }
+  // if (token) {
+  //   console.log(token)
+  //   // useNavigate("/login");
+  //   window.location.href = "#/userHome";
+  //   window.location.reload()
+  // }
 
   const handleStripeSuccess = () => {
     console.log("success");

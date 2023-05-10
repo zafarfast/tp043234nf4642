@@ -59,6 +59,24 @@ header {
   /* border: 1px solid black; */
 }
 
+#user-profile-pic-div
+{
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  width: 150px;
+  font-size: small;
+
+}
+
+#user-profile-pic-div span
+{
+  background-color: #564c4c;
+  color: white;
+  padding: 5px;
+}
+
+
 #user-profile-pic {
   height: 70px;
   width: 70px;
@@ -158,6 +176,12 @@ header {
 
 }
 
+#user-greeting
+{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #5e1766;
+  background: black;
+}
 #thoughtbook-title-text3 {
   font-family: Arial, Helvetica, sans-serif;
   color: #5e1766;

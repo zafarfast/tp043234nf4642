@@ -143,6 +143,17 @@ export default function UserHome() {
     }
   }
 
+  const [display, setdisplay]=useState('display-none')
+  function displayObject()
+  {
+      setdisplay('display-yes')
+  }
+  function hideObject()
+  {
+  setdisplay('display-none')
+  }
+
+
   return (
     <>
       <header>
@@ -151,10 +162,11 @@ export default function UserHome() {
           <h1 id="thoughtbook-title-text-login-page">ThoughtBook </h1>
         </div>
 
-        <div id="user-profile-pic">
+        <div id="user-profile-pic-div">
+        <span className={display} id="user-greeting">Edit Account</span>
           <Link to="/userProfile">
             {" "}
-            <img
+            <img onMouseEnter={displayObject} onMouseLeave={hideObject}
               id="user-profile-pic"
               src={findUser?.displayPicture}
               alt=""
