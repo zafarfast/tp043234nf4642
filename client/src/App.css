@@ -269,10 +269,27 @@ label {
 }
 
 #user-thought-preview {
+  padding: 10px;
+  border-radius: 10px;
   width: 350px;
+  font-size:large ;
+  word-wrap: break-word;
+  color: #43258e;
   margin: auto;
+  text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   margin: 10px;
+}
+
+#user-thought-preview2{
+  font-size: 17px;
+  width: 350px;
+  background: -webkit-linear-gradient(#170505, #9f5191);
+  -webkit-background-clip: text;
+  word-wrap: break-word;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Arial, Helvetica, sans-serif;
 
 }
 
@@ -304,6 +321,12 @@ label {
   align-items: center;
   background: -webkit-linear-gradient(#ffffff, rgb(240, 223, 255));
 
+}
+.display-none{
+  display: none;
+}
+.display-yes{
+  display: block;
 }
 
 #generated-image-container {

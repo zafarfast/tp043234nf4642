@@ -6,11 +6,11 @@ async function addPost()
 {
   await User.collection.drop()
   await Post.collection.drop()
-  const newUser = new User({ email: `zafar@hotmail.com`, firstName:"Zafar", lastName:"Ahmed", password:"thisispassword", displayPicture:"./images/user-profile-pic.jpg", posts:[], followed:[], followers:[]});
+  const newUser = new User({ email: `zafar@hotmail.com`, firstName:"Zafar", lastName:"Ahmed", password:"thisispassword", displayPicture:"https://cms-assets.tutsplus.com/uploads/users/810/profiles/19338/profileImage/profile-square-extra-small.png", posts:[], followed:[], followers:[]});
   await newUser.save();
-  const newUser2 = new User({ email: `bryan@hotmail.com`, firstName:"Bryan", lastName:"Afzal", password:"thisispassword", displayPicture:"./images/user-profile-pic.jpg", posts:[], followed:[], followers:[]});
+  const newUser2 = new User({ email: `bryan@hotmail.com`, firstName:"Bryan", lastName:"Afzal", password:"thisispassword", displayPicture:"https://th.bing.com/th/id/R.4b1ebbdf9a6a42f23de2678c80eb02df?rik=SEPvooeqfgw0kA&riu=http%3a%2f%2fimages.unsplash.com%2fphoto-1535713875002-d1d0cf377fde%3fcrop%3dentropy%26cs%3dtinysrgb%26fit%3dmax%26fm%3djpg%26ixid%3dMnwxMjA3fDB8MXxzZWFyY2h8NHx8bWFsZSUyMHByb2ZpbGV8fDB8fHx8MTYyNTY2NzI4OQ%26ixlib%3drb-1.2.1%26q%3d80%26w%3d1080&ehk=Gww3MHYoEwaudln4mR6ssDjrAMbAvyoXYMsyKg5p0Ac%3d&risl=&pid=ImgRaw&r=0", posts:[], followed:[], followers:[]});
   await newUser2.save();
-  const newUser3 = new User({ email: `anna@hotmail.com`, firstName:"Anna", lastName:"Marcus", password:"thisispassword", displayPicture:"./images/user-profile-pic.jpg", posts:[], followed:[], followers:[]});
+  const newUser3 = new User({ email: `anna@hotmail.com`, firstName:"Anna", lastName:"Marcus", password:"thisispassword", displayPicture:"https://th.bing.com/th/id/R.5736c0c62fecf9d0e4a05ff53c013d82?rik=qolrV%2bUth%2fOTjA&riu=http%3a%2f%2fghost.skillshub.info%2fcontent%2fimages%2f2017%2f01%2fprofile-girl-square.png&ehk=CvxbBHBPKtwBuWfkEI51uhrqJ%2bWQpqLXil9D4Ne1%2bsQ%3d&risl=&pid=ImgRaw&r=0", posts:[], followed:[], followers:[]});
   await newUser3.save();
   const newPost = new Post({ username: "zafar@hotmail.com", thoughtText: "Enjoying serenity at lake side",imageUrl: "./images/hut at the lake side.jpg" ,likes:[],comments:[]});
   await newPost.save();

@@ -1,6 +1,7 @@
 # ThoughtBook
 
 
+
 **Table of Contents**
 -
 - [Project Description](#project-description)
@@ -23,8 +24,8 @@ The API will be built using AI technologies such as computer vision, machine lea
 - GraphQL
 - Node
 - Express
+- Apollo Client
 - Mongoose
-- Apollo
 - JWT
 - OpenAI
 - Amazon Web Services (AWS)
@@ -54,6 +55,7 @@ The API will be built using AI technologies such as computer vision, machine lea
 - Then the API should generate a picture using AI that reflects the emotions expressed in my sentence
 - When I write how I feel about the generated picture
 - Then the API should allow me to post both the generated picture and my thoughts to the social media thought book platform. 
+
 
 
 **License**
