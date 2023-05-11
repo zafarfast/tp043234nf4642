@@ -204,7 +204,6 @@ const resolvers = {
       console.log(args);
       // const isLoginValid = false;
       const findUser = await User.findOne({email: args.email});
-      console.log(findUser[0]);
       if (findUser) {
         if (findUser?.password === args.password) {
           return {
