@@ -6,6 +6,8 @@ const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 const addPost = require("../seed/seed");
 const {signToken, authMiddleware} = require("../utils/auth");
+const Binary = require('mongodb').Binary;
+const fs = require("fs")
 
 const resolvers = {
   Query: {
@@ -28,6 +30,8 @@ const resolvers = {
           select: "-__v",
         });
         console.log(a);
+
+
         return a;
       } else {
         console.log("User is not logged in");
@@ -67,13 +71,26 @@ const resolvers = {
   Mutation: {
     //create a new user
     addUser: async (parent, args) => {
+
+      // // const profilePic = args.displayPicture;
+      // const profilePic = await fs.readFileSync(path.join(__dirname, "./user-profile-pic1.jpg"))
+
+      // console.log(profilePic)
+
+      // const binaryPic = Binary(profilePic);
+
+
+      // console.log("==============")
+      // console.log(binaryPic)
+      
+
+
       return User.create({
         email: args.email,
         firstName: args.firstName,
         lastName: args.lastName,
         password: args.password,
-        displayPicture:
-          "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg",
+        displayPicture: "./images/avatars/avatar1.jpg",
         posts: [],
         followers: [],
         followed: [],
@@ -84,12 +101,15 @@ const resolvers = {
       if (context.user) {
         let update = {};
 
+        console.log(args.displayPicture)
+
         if (args.password == "") {
           console.log("Not updating password");
           update = {
             email: args.email,
             firstName: args.firstName,
             lastName: args.lastName,
+            displayPicture: args.displayPicture
           };
         } else {
           update = {
@@ -97,6 +117,7 @@ const resolvers = {
             firstName: args.firstName,
             lastName: args.lastName,
             password: args.password,
+            displayPicture: args.displayPicture
             // displayPicture: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg',
           };
         }

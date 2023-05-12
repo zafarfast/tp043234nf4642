@@ -9,7 +9,15 @@ import {useMutation, useQuery} from "@apollo/client";
 // import Auth from "../utils/auth"
 import jwt_decode from "jwt-decode";
 
+
 export default function UserProfile() {
+  const avatarList = [
+    "./images/avatars/avatar1.jpg",
+    "./images/avatars/avatar2.jpg",
+  ]
+
+
+
   const token1 = localStorage.getItem("id_token");
   const decoded_token = jwt_decode(token1);
   //   const userId = decoded_token.data._id;
@@ -44,12 +52,16 @@ export default function UserProfile() {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    const selectedAvatar = document.querySelector('input[name="selected_avatar"]:checked').value
+
+    console.log(selectedAvatar)
     await editUser({
       variables: {
         email: formData.email,
         firstName: formData.firstName,
         lastName: formData.lastName,
         password: formData.password,
+        displayPicture: selectedAvatar
       },
     });
 
@@ -125,6 +137,23 @@ export default function UserProfile() {
             name="password"
             onChange={handleChange}
           ></input>
+          <br></br>
+          <br></br>
+
+          <div>
+          <label for="selected_avatar">Avatar</label>
+            {avatarList.map(avatar => {
+              return (
+                <div>
+                    <input type="radio" name="selected_avatar" value={avatar} defaultChecked={avatar == userData?.displayPicture}/>
+                    <img style={{
+                      width: "30px"
+                    }} src={avatar}/>
+                  </div>
+              )
+            })}
+          </div>
+
           <br></br>
           <br></br>
           <button id="login-button2">Save Edit</button>
