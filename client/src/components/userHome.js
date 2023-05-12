@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import UserPost from "./userPost";
 import Postschain from "./postsChain";
 
+import { Buffer } from "buffer";
+
 export default function UserHome() {
   const token = localStorage.getItem("id_token");
 
@@ -152,6 +154,32 @@ export default function UserHome() {
   {
   setdisplay('display-none')
   }
+
+  // function convertBufferToImg (buffer) {
+  //   if(buffer) {
+  //     console.log(buffer)
+  //     var buf = Buffer.from(buffer, 'base64');
+  //     console.log(buf)
+
+  //     // const base64String = btoa(String.fromCharCode(...new Uint8Array(buf)));
+  
+  //     // console.log(base64String)
+
+  //     const blob = new Blob([buf],{
+  //       type: 'image/png'
+  //     })
+  //     console.log(blob)
+
+  //     const srcBlob = URL.createObjectURL(blob);
+    
+  //     // return `data:image/png;base64,${base64String}`
+  //     return srcBlob;
+  //   }
+  //   else {
+  //     return null;
+  //   }
+
+  // }
 
 
   return (

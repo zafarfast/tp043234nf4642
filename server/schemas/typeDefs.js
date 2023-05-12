@@ -27,6 +27,7 @@ const typeDefs = gql`
       firstName: String
       lastName: String
       password: String
+      displayPicture: String
     ): User
     getUserThought(thoughtText: String!): String
   }

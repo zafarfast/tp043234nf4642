@@ -104,12 +104,14 @@ export const EDIT_USER = gql`
     $firstName: String!
     $lastName: String!
     $password: String!
+    $displayPicture: String!
   ) {
     editUser(
       email: $email
       firstName: $firstName
       lastName: $lastName
       password: $password
+      displayPicture: $displayPicture
     ) {
       _id
       displayPicture
