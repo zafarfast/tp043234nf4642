@@ -108,13 +108,14 @@ export default function UserHome() {
     event.preventDefault();
     console.log("Handle Submit received");
     console.log(postData);
-    await submitPost({
+    const k = await submitPost({
       variables: {
         username: postData.username,
         thoughtText: postData.thoughtText,
         imageUrl: postData.imageUrl,
       },
     });
+
     settutu(Math.floor(Math.random() * 10));
     window.location.reload('#/userHome')
   }
@@ -138,12 +139,14 @@ export default function UserHome() {
           posts.push({
             ...findUsers[i].posts[j],
             displayPicture: findUsers[i].displayPicture,
-            _id:findUsers[i]._id
+            _id:findUsers[i]._id,
+            firstName:findUsers[i].firstName
           });
         }
       }
     }
   }
+  const [displaypic, setdisplaypic]= useState(findUser?.displayPicture)
 
   const [display, setdisplay]=useState('display-none')
   function displayObject()
