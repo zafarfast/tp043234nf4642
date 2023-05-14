@@ -40,7 +40,7 @@ export default function Signup() {
   
         // console.log(response);
   
-        window.location.href = "#/userHome";
+        window.location.href = "#/login";
       } catch (err) {
         console.log(err);
       }

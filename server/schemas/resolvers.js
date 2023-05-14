@@ -110,7 +110,7 @@ const resolvers = {
         firstName: args.firstName,
         lastName: args.lastName,
         password: args.password,
-        displayPicture: "./images/avatars/avatar1.jpg",
+        displayPicture: "./images/avatars/avatar0.jpg",
         posts: [],
         followers: [],
         followed: [],
