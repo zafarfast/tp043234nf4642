@@ -92,7 +92,7 @@ export default function Login() {
         </form>
 
         <p id="signup-invite-text">
-          Dont have an account? <a href="#/signup">Sign-up</a>
+          Don't have an account? <a href="#/signup">Sign-up</a>
         </p>
       </div>
 
