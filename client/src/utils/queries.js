@@ -46,6 +46,31 @@ export const GET_USER = gql`
   }
 `;
 
+export const FIND_SINGLE_USER = gql`
+query FindSingleUser($email: String!) {
+  findSingleUser(email: $email) {
+    _id
+    displayPicture
+    email
+    firstName
+    followed {
+      firstName
+      lastName
+      _id
+      displayPicture
+      email
+    }
+    followers {
+      _id
+      email
+      displayPicture
+      firstName
+      lastName
+    }
+    lastName
+  }
+}`;
+
 export const QUERY_USERS = gql`
   query findUsers {
     findUsers {

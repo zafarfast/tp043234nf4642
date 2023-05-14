@@ -240,7 +240,7 @@ export default function UserHome() {
           </div>
         </div>
       </div>
-      <Postschain key={tutu} posts={posts} />
+      <Postschain key={tutu} loggedinUser={user} posts={posts} />
       {/* <div id="thoughts-chain">
             {
                 posts?.map((item, index) => {

@@ -7,7 +7,7 @@ export default function Postschain(props) {
         <div id="thoughts-chain">
             {
                 props.posts?.map((item, index) => {
-                    return <UserPost key={index} createdAt={item.createdAt} id={item._id} src={item.imageUrl} firstName={item.firstName} thoughtText={item.thoughtText} userProfilePic={item.displayPicture} />
+                    return <UserPost key={index} loggedinUser={props.loggedinUser} createdAt={item.createdAt} id={item._id} src={item.imageUrl} firstName={item.firstName} thoughtText={item.thoughtText} userProfilePic={item.displayPicture} />
                 })
             }
         </div>
