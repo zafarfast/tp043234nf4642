@@ -1,7 +1,7 @@
 # ThoughtBook
 
 
-**Table of Contents**
+## Table of Contents
 - [Project Description](#project-description)
 - [Usage](#usage)
 - [Technologies used](#technologies-used)
@@ -10,22 +10,17 @@
 - [License](#license)
 
 
-**Project Description**
+## Project Description
 The Social Media Thought Book AI Picture Generator is an API that allows users of a social media startup to express their emotions through generated pictures created by AI. The API enables users to enter a short sentence expressing their feelings and generate a picture that reflects those emotions. Users can write how they feel about the generated picture and post both the picture and their thoughts to the social media thought book platform.
 
-The API will be built using AI technologies such as computer vision, machine learning, and neural networks. The API will be hosted on the Amazon Web Services (AWS) cloud platform.
 
-
-**Usage**
+## Website Link
 https://thought-book.herokuapp.com/
 
-![alt text](.//client/src/images/home.png)
-![alt text](.//client/src/images/signup.png)
-![alt text](.//client/src/images/login.png)
-![alt text](.//client/src/images/userHome.png)
+## GitHub Link
+https://github.com/zafarfast/tp043234nf4642
 
-
-**Technologies used:**
+## Technologies used:
 - React
 - GraphQL
 - Node
@@ -34,8 +29,8 @@ https://thought-book.herokuapp.com/
 - Mongoose
 - JWT
 - OpenAI
-- Amazon Web Services (AWS)
 - Heroku
+- Email Validator
 
 
 ## Project Team
@@ -59,6 +54,26 @@ https://thought-book.herokuapp.com/
 - When I write how I feel about the generated picture
 - Then the API should allow me to post both the generated picture and my thoughts to the social media thought book platform. 
 
+## Screenshots
 
-**License**
+### Desktop View
+
+![alt text](./client/public/images/desktop2.jpg)
+
+![alt text](./client/public/images/desktop1.jpg)
+
+![alt text](.//client/src/images/login.png)
+
+
+### Mobile View
+
+![alt text](./client/public/images/mobile1.jpg)
+
+![alt text](./client/public/images/mobile2.jpg)
+
+![alt text](./client/public/images/mobile3.jpg)
+
+
+
+## License
 - ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
