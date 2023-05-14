@@ -72,13 +72,13 @@ export default function Signup() {
         </h1>
         <br></br>
         <form onSubmit={handleSubmit}>
-          <label for="email">First Name</label>
+          <label htmlFor="email">First Name</label>
           <br></br>
           {/* make sure to provide a name for each input element */}
           <input type="text" name="firstName" onChange={handleChange}></input>
           <br></br>
           <br></br>
-          <label for="email">Last Name</label>
+          <label htmlFor="email">Last Name</label>
           <br></br>
           <input type="text" name="lastName" onChange={handleChange}></input>
           <br></br>
@@ -88,7 +88,7 @@ export default function Signup() {
           <input type="text" name="email" onChange={handleChange}></input>
           <p>{msg}</p>
           <br></br>
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <br></br>
 
           <input

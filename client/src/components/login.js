@@ -74,12 +74,12 @@ export default function Login() {
         <br></br>
 
         <form onSubmit={handleSubmit}>
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <br></br>
           <input type="text" name="email" onChange={handleChange}></input>
           <br></br>
           <br></br>
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <br></br>
 
           <input

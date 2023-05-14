@@ -113,7 +113,7 @@ export default function UserProfile() {
         </Link>
         <br></br>
         <form onSubmit={handleSubmit}>
-          <label for="email">First Name</label>
+          <label htmlFor="email">First Name</label>
           <br></br>
           <input
             type="text"
@@ -123,7 +123,7 @@ export default function UserProfile() {
           ></input>
           <br></br>
           <br></br>
-          <label for="email">Last Name</label>
+          <label htmlFor="email">Last Name</label>
           <br></br>
           <input
             type="text"
@@ -133,7 +133,7 @@ export default function UserProfile() {
           ></input>
           <br></br>
           <br></br>
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <br></br>
           <input
             type="text"
@@ -153,7 +153,7 @@ export default function UserProfile() {
           ></input>
           <br></br>
           <br></br>
-          <label for="selected_avatar">Avatar</label>
+          <label htmlFor="selected_avatar">Avatar</label>
 
           <div id="flex-box">
             {avatarList.map(avatar => {
