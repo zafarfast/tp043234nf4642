@@ -14,9 +14,16 @@ export default function UserProfile() {
   const avatarList = [
     "./images/avatars/avatar1.jpg",
     "./images/avatars/avatar2.jpg",
+    "./images/avatars/avatar3.jpg",
+    "./images/avatars/avatar4.jpg",
+    "./images/avatars/avatar5.jpg",
+    "./images/avatars/avatar6.jpg",
+    "./images/avatars/avatar7.jpg",
+    "./images/avatars/avatar8.jpg",
+    "./images/avatars/avatar9.jpg",
   ]
 
-
+  // const [count, setcount] = useState(0);
 
   const token1 = localStorage.getItem("id_token");
   const decoded_token = jwt_decode(token1);
@@ -26,7 +33,7 @@ export default function UserProfile() {
   const {loading, data} = useQuery(GET_USER);
 
   const userData = data?.findUser || {};
-
+  const [randomNum, setrandomNum] = useState(Math.floor(Math.random()*9))
   const [formData, setFormData] = useState({
     userId: "",
     email: "",
@@ -44,7 +51,7 @@ export default function UserProfile() {
       password: "",
     });
 
-    console.log(userData);
+    // console.log(userData);
   }, [userData]);
 
   const [editUser] = useMutation(EDIT_USER);
@@ -81,6 +88,13 @@ export default function UserProfile() {
     return <h2>Still loading, please wait!</h2>;
   }
 
+  function setRandomNum()
+  {
+    // setcount(1)
+    setrandomNum(Math.floor(Math.random()*9))
+    // console.log(count)
+  }
+
   return (
     <>
       <div id="signup-form-container">
@@ -99,7 +113,7 @@ export default function UserProfile() {
         </Link>
         <br></br>
         <form onSubmit={handleSubmit}>
-          <label for="email">First Name</label>
+          <label htmlFor="email">First Name</label>
           <br></br>
           <input
             type="text"
@@ -109,7 +123,7 @@ export default function UserProfile() {
           ></input>
           <br></br>
           <br></br>
-          <label for="email">Last Name</label>
+          <label htmlFor="email">Last Name</label>
           <br></br>
           <input
             type="text"
@@ -119,7 +133,7 @@ export default function UserProfile() {
           ></input>
           <br></br>
           <br></br>
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <br></br>
           <input
             type="text"
@@ -139,28 +153,35 @@ export default function UserProfile() {
           ></input>
           <br></br>
           <br></br>
+          <label htmlFor="selected_avatar">Avatar</label>
 
-          <div>
-          <label for="selected_avatar">Avatar</label>
+          <div id="flex-box">
             {avatarList.map(avatar => {
               return (
-                <div>
+                <div id="flex-box">
+                    
+                    {/* <input type="radio" name="selected_avatar" value={avatar} defaultChecked={avatar == userData?.displayPicture}/> */}
                     <input type="radio" name="selected_avatar" value={avatar} defaultChecked={avatar == userData?.displayPicture}/>
                     <img style={{
-                      width: "30px"
+                      width: "120px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems:"center",
+                      justifyContent: "center"
                     }} src={avatar}/>
                   </div>
               )
-            })}
+            })[randomNum]}
+            <p id="login-button2" onClick={setRandomNum}>Select New Avatar</p>
           </div>
 
           <br></br>
           <br></br>
-          <button id="login-button2">Save Edit</button>
+          <button id="login-button2">Save</button>
         </form>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

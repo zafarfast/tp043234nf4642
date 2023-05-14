@@ -4,6 +4,7 @@ const {gql} = require("apollo-server-express");
 const typeDefs = gql`
   type Query {
     findUser: User
+    findSingleUser(email: String!): User
     findUsers: [User]
     getfollowers: [User]
     getfollowed: [User]
@@ -30,6 +31,7 @@ const typeDefs = gql`
       displayPicture: String
     ): User
     getUserThought(thoughtText: String!): String
+    addFollower(id:ID, follower:ID): User
   }
 
   type Auth {

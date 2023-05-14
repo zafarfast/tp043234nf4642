@@ -20,6 +20,25 @@ const resolvers = {
     //   console.log(a)
     //   return a
     // },
+    findSingleUser: async (_, args)=>
+    {
+      const a = await User.findOne({email: args.email}).populate({
+        path: "posts",
+        populate: {
+          path: "comments",
+        },
+        select: "-__v",
+      });
+
+      if (a)
+      {
+        return  a
+      }
+      else {
+        return "User not found"
+      }
+
+    },
     findUser: async (_, args, context) => {
       if (context.user) {
         const a = await User.findOne({_id: context.user._id}).populate({
@@ -70,6 +89,7 @@ const resolvers = {
 
   Mutation: {
     //create a new user
+
     addUser: async (parent, args) => {
 
       // // const profilePic = args.displayPicture;
@@ -90,7 +110,7 @@ const resolvers = {
         firstName: args.firstName,
         lastName: args.lastName,
         password: args.password,
-        displayPicture: "./images/avatars/avatar1.jpg",
+        displayPicture: "./images/avatars/avatar0.jpg",
         posts: [],
         followers: [],
         followed: [],
@@ -172,6 +192,16 @@ const resolvers = {
       return Post.deleteOne({_id: args.postId});
     },
 
+    addFollower: async (parent, args)=>{
+      console.log(args)
+      const addFollower = await User.findOneAndUpdate({_id:args.id},{
+        $push: {followers:args.follower}},
+        { new: true }
+        )
+        console.log("add followers")
+        console.log(addFollower)
+        return addFollower
+    },
     // add comment to the post
     addComment: async (parent, args) => {
       const findPost = await Post.find({username: args.email});

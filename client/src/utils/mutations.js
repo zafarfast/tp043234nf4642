@@ -126,6 +126,22 @@ export const EDIT_USER = gql`
 // mutation UserLogin($username: String!, $password: String!) {
 //   userLogin(username: $username, password: $password)
 // }`
+export const ADD_FOLLOWER = gql`
+mutation AddFollower($follower: ID, $addFollowerId: ID) {
+  addFollower(follower: $follower, id: $addFollowerId) {
+    _id
+    email
+    firstName
+    lastName
+    displayPicture
+    posts {
+      _id
+      createdAt
+      thoughtText
+      imageUrl
+    }
+  }
+}`;
 
 export const USER_LOGIN = gql`
   mutation userLogin($email: String!, $password: String!) {
