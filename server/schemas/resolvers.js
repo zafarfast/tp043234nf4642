@@ -85,6 +85,13 @@ const resolvers = {
       console.log(a);
       return a;
     },
+
+    findSingleUserById: async (parent, args)=>{
+      const findUser = await User.findOne({_id: args.id});
+      return findUser;
+    },
+    
+
   },
 
   Mutation: {
@@ -250,7 +257,6 @@ const resolvers = {
     //     }
     //   }
     //   }
-
     userLogin: async (parent, args) => {
       console.log(args);
       // const isLoginValid = false;

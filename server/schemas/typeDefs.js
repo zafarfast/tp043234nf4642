@@ -8,6 +8,7 @@ const typeDefs = gql`
     findUsers: [User]
     getfollowers: [User]
     getfollowed: [User]
+    findSingleUserById(id:ID!): User
   }
 
   type Mutation {

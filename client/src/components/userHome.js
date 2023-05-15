@@ -15,7 +15,7 @@ export default function UserHome() {
 
   if (!token) {
     // useNavigate("/login");
-    window.location.href = "/login";
+    window.location.href = "#/login";
   }
 
   const decoded_token = jwt_decode(token);
@@ -149,13 +149,17 @@ export default function UserHome() {
   const [displaypic, setdisplaypic]= useState(findUser?.displayPicture)
 
   const [display, setdisplay]=useState('display-none')
+  const [display2, setdisplay2]=useState('display-yes')
   function displayObject()
   {
       setdisplay('display-yes')
+      setdisplay2('display-none')
   }
   function hideObject()
   {
   setdisplay('display-none')
+  setdisplay2('display-yes')
+
   }
 
   // function convertBufferToImg (buffer) {
@@ -183,6 +187,10 @@ export default function UserHome() {
   //   }
 
   // }
+  function logout() {
+    localStorage.removeItem('id_token');
+    window.location.replace('/');
+  }
 
 
   return (
@@ -194,6 +202,7 @@ export default function UserHome() {
         </div>
 
         <div id="user-profile-pic-div">
+        <Link to="/" onClick={logout} className={display2} id="user-greeting2">Logout</Link>
         <span className={display} id="user-greeting">Edit Account</span>
           <Link to="/userProfile">
             {" "}
@@ -240,7 +249,7 @@ export default function UserHome() {
           </div>
         </div>
       </div>
-      <Postschain key={tutu} loggedinUser={user} posts={posts} />
+      <Postschain key={tutu} posts={posts} />
       {/* <div id="thoughts-chain">
             {
                 posts?.map((item, index) => {

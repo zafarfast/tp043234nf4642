@@ -227,6 +227,21 @@ header {
   color: #5e1766;
   background: black;
 }
+
+#user-greeting2
+{
+  background: -webkit-linear-gradient(#5571C4, #DD22BE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:400;
+
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  width: fit-content;
+}
+
 #thoughtbook-title-text3 {
   font-family: Arial, Helvetica, sans-serif;
   color: #5e1766;
@@ -296,7 +311,6 @@ header {
 #post-button,
 #re-generate-button,
 #donate-button,
-#donate-button2,
 #signup-button {
   color: azure;
   border-radius: 5px;

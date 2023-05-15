@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import {FIND_SINGLE_USER} from '../utils/queries'
+import {FIND_SINGLE_USER, FIND_SINGLE_USER_BY_ID} from '../utils/queries'
 import {ADD_FOLLOWER} from '../utils/mutations'
 import {gql, useQuery, useMutation} from "@apollo/client";
 
 export default function UserPost(props)
 {
-    // console.log('reloaded'+Math.random())
+    console.log('reloaded'+Math.random())
     let createdAtDate = new Date(parseInt(props.createdAt));
     // console.log(createdAtDate)
     let date = createdAtDate.toString()
@@ -18,6 +18,16 @@ export default function UserPost(props)
     
     // const {loading:loading2, data:data2} = useMutation()
     });
+
+    const {loading:loading2, data:data2} = useQuery(FIND_SINGLE_USER_BY_ID,{
+        variables:
+        {
+            email:props.loggedinUser
+        }
+    
+    // const {loading:loading2, data:data2} = useMutation()
+    });
+
 
     const [addfollowermutation] = useMutation(ADD_FOLLOWER, {
         variables: {
@@ -34,7 +44,6 @@ export default function UserPost(props)
 
         // console.log(data1?.findSingleUser._id)
         addfollowermutation()
-
     }
     
 return <>
@@ -56,7 +65,7 @@ return <>
         <div id="user-thought-image">
             <div id="flex2">
             <span id="user-name">{props.firstName}</span>
-            <span id="timestamp">{'Posted on '+date[2]+' '+date[1]+' '+date[3][2]+date[3][3]}</span>
+            {/* <span id="timestamp">{'Posted on '+date[2]+' '+date[1]+' '+date[3][2]+date[3][3]}</span> */}
 
             </div>
             <img src={props.src} alt=""></img>
