@@ -31,6 +31,7 @@ https://github.com/zafarfast/tp043234nf4642
 - OpenAI
 - Heroku
 - Email Validator
+- Stripe
 - .env
 
 
