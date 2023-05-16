@@ -15,7 +15,7 @@ The Social Media Thought Book AI Picture Generator is an API that allows users o
 
 
 ## Website Link
-https://thought-book.herokuapp.com/
+https://thtbook.herokuapp.com/
 
 ## GitHub Link
 https://github.com/zafarfast/tp043234nf4642
