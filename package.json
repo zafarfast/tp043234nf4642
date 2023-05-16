@@ -1,0 +1,33 @@
+{
+    "name": "tp043234nf4642",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js",
+      "watch": "nodemon",
+      "seed": "node seeders/seed.js",
+      "build": "cd client && npm run build",
+      "install": "cd client && npm install"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "apollo-server-express": "^3.6.1",
+      "dotenv": "^16.0.3",
+      "express": "^4.17.2",
+      "fs": "^0.0.1-security",
+      "graphql": "^16.2.0",
+      "http-proxy-middleware": "^2.0.6",
+      "https": "^1.0.0",
+      "jsonwebtoken": "^9.0.0",
+      "mongoose": "^6.11.0",
+      "openai": "^3.2.1",
+      "path": "^0.12.7"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.3"
+    }
+  }
+  
