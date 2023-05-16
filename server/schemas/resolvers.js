@@ -41,14 +41,15 @@ const resolvers = {
     },
     findUser: async (_, args, context) => {
       if (context.user) {
-        const a = await User.findOne({_id: context.user._id}).populate({
+        console.log(context.user._id)
+        const a = await User.findById(context.user._id)
+        .populate({
           path: "posts",
           populate: {
             path: "comments",
           },
           select: "-__v",
         });
-        console.log(a);
 
 
         return a;
@@ -91,6 +92,59 @@ const resolvers = {
       return findUser;
     },
     
+    findPosts: async (parent, args, context) => {
+      console.log("Request received");
+
+      const c = await User.findById(context.user._id);
+
+      const b = await User.find({}).populate({
+        path: "posts",
+        populate: {
+          path: "comments",
+        },
+        select: "-__v",
+      });
+
+      const a = []
+      console.log(b)
+      // b.forEach(user => {
+      //   // const
+      //   a.concat(user.posts)
+      // })
+
+      for (let i = b.length - 1; i >= 0; i--) {
+        const user = b[i]
+      if (user.posts) {
+        for (let j = b[i].posts.length - 1; j >= 0; j--) {
+          // console.log("test")
+          // console.log(b[i].posts[j])
+          // console.log("======")
+          // console.log(b[i].followers)
+          // console.log(c._id)
+          // console.log("-----")
+          a.push({
+            // ...b[i].posts[j],
+            username: b[i].posts[j].username,
+            thoughtText: b[i].posts[j].thoughtText,
+            imageUrl: b[i].posts[j].imageUrl,
+            createdAt: b[i].posts[j].createdAt,
+            displayPicture: b[i].displayPicture,
+            _id:b[i].posts[j]._id,
+            userID:b[i]._id,//
+            firstName:b[i].firstName,
+            // isFollowed: c.followed.includes(b[i]._id)
+            isFollowed: b[i].followers.includes(c._id)
+          });
+        }
+      }
+    }
+    console.log('====================THIS IS A - ALL POSTS===================')
+    console.log(a)
+
+      // console.log(b)
+      console.log("Find Posts query received");
+      return a
+    },
 
   },
 
@@ -182,16 +236,23 @@ const resolvers = {
         username: args.username,
         thoughtText: args.thoughtText,
         imageUrl: args.imageUrl,
+        userId: context.user._id
       });
+      console.log("'''''''''''''''''''''''''''''''")
+      console.log(newPost)
+      newPost.save()
 
       // add the post to User profile
       const findUser = await User.findOne({email: context.user.email});
       console.log(findUser);
       console.log(context.user);
+      console.log("FinduserPosts before change")
+      console.log(findUser.posts)
 
       findUser.posts.push(newPost._id);
       findUser.save();
-
+      console.log("FinduserPosts After change")
+      console.log(findUser.posts)
       return newPost;
     },
 

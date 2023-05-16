@@ -3,7 +3,7 @@ const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 const path = require('path')
 const addPost = require("./seed/seed")
-const typeDefs = require('./schemas/typedefs')
+const typeDefs = require('./schemas/typeDefs')
 const resolvers = require('./schemas/resolvers')
 const {signToken, authMiddleware} = require("./utils/auth")
 

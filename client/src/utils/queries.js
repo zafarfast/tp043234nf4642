@@ -96,6 +96,21 @@ query FindSingleUserById($_id: ID!) {
   }
 }`;
 
+export const FIND_POSTS = gql`
+query FindPosts {
+  findPosts {
+    _id
+    createdAt
+    imageUrl
+    username
+    thoughtText
+    displayPicture
+    firstName
+    isFollowed
+    userID
+  }
+}`;
+
 export const QUERY_USERS = gql`
   query findUsers {
     findUsers {

@@ -54,7 +54,9 @@ export default function UserProfile() {
     // console.log(userData);
   }, [userData]);
 
-  const [editUser] = useMutation(EDIT_USER);
+  const [editUser] = useMutation(EDIT_USER, {
+    refetchQueries: [GET_USER]
+  });
 
   async function handleSubmit(event) {
     event.preventDefault();

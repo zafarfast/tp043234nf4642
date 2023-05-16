@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {FIND_SINGLE_USER, FIND_SINGLE_USER_BY_ID} from '../utils/queries'
+import {FIND_POSTS, FIND_SINGLE_USER, FIND_SINGLE_USER_BY_ID, GET_USER} from '../utils/queries'
 import {ADD_FOLLOWER} from '../utils/mutations'
 import {gql, useQuery, useMutation} from "@apollo/client";
 
@@ -10,29 +10,26 @@ export default function UserPost(props)
     // console.log(createdAtDate)
     let date = createdAtDate.toString()
     date = date.split(' ')
-    const {loading:loading1, data:data1} = useQuery(FIND_SINGLE_USER,{
-        variables:
-        {
-            email:props.loggedinUser
-        }
+    const {loading:loading1, data:data1} = useQuery(GET_USER)
     
     // const {loading:loading2, data:data2} = useMutation()
-    });
+    
 
-    const {loading:loading2, data:data2} = useQuery(FIND_SINGLE_USER_BY_ID,{
-        variables:
-        {
-            email:props.loggedinUser
-        }
+    // const {loading:loading2, data:data2} = useQuery(FIND_SINGLE_USER_BY_ID,{
+    //     variables:
+    //     {
+    //         email:props.loggedinUser
+    //     }
     
-    // const {loading:loading2, data:data2} = useMutation()
-    });
+    // // const {loading:loading2, data:data2} = useMutation()
+    // });
 
 
     const [addfollowermutation] = useMutation(ADD_FOLLOWER, {
+        refetchQueries: [GET_USER, FIND_POSTS],
         variables: {
-          follower: data1?.findSingleUser._id,
-          addFollowerId: props.id
+          follower: data1?.findUser._id,
+          addFollowerId: props.userID
         },
       });
     
@@ -42,8 +39,12 @@ export default function UserPost(props)
         // console.log('ID of person who clicked the post '+props.loggedinUser)
         // console.log('ID of person whose post is clicked '+props.id)
 
-        // console.log(data1?.findSingleUser._id)
+        // console.log(data1?.findUser._id)
         addfollowermutation()
+    }
+
+    function removeFollower () {
+
     }
     
 return <>
@@ -56,8 +57,15 @@ return <>
             <p id="user-thought">{props.thoughtText}</p>
             <div id="post-follow-button">
 
-            {/* <button onClick={addFollower} id="follow-button">Follow </button> */}
-            <button  id="follow-button">Follow </button>
+            {
+                props.isFollowed ? 
+                (
+                    <button onClick={removeFollower} id="follow-button">Unfollow </button>
+                ) : (
+                    <button onClick={addFollower} id="follow-button">Follow </button>
+                )
+            }
+            {/* <button  id="follow-button">Follow </button> */}
             </div>
 
         </div>
@@ -65,7 +73,7 @@ return <>
         <div id="user-thought-image">
             <div id="flex2">
             <span id="user-name">{props.firstName}</span>
-            {/* <span id="timestamp">{'Posted on '+date[2]+' '+date[1]+' '+date[3][2]+date[3][3]}</span> */}
+            <span id="timestamp">{'Posted on '+date[2]+' '+date[1]+' '+date[3][2]+date[3][3]}</span>
 
             </div>
             <img src={props.src} alt=""></img>

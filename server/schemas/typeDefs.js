@@ -9,6 +9,7 @@ const typeDefs = gql`
     getfollowers: [User]
     getfollowed: [User]
     findSingleUserById(id:ID!): User
+    findPosts: [DisplayPost]
   }
 
   type Mutation {
@@ -59,6 +60,20 @@ const typeDefs = gql`
     likes: [User]
     comments: [Comment]
     createdAt: String
+  }
+
+  type DisplayPost {
+    _id: ID
+    username: String
+    thoughtText: String
+    imageUrl: String
+    likes: [User]
+    comments: [Comment]
+    createdAt: String
+    userID: ID
+    displayPicture: String
+    firstName: String
+    isFollowed: Boolean
   }
 
   type Comment {

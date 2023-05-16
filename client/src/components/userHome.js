@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {gql, useQuery, useMutation} from "@apollo/client";
 import jwt_decode from "jwt-decode";
 import {useNavigate} from "react-router-dom";
-import {GET_USER, QUERY_USERS} from "../utils/queries";
+import {GET_USER, QUERY_USERS, FIND_POSTS} from "../utils/queries";
 
 import {Link} from "react-router-dom";
 import UserPost from "./userPost";
@@ -130,22 +130,28 @@ export default function UserHome() {
 
   let {loading: loading2, error: error2, data: data2} = useQuery(QUERY_USERS);
   let findUsers = data2?.findUsers || [];
+  let {loading: loading3, error: error3, data: data3} = useQuery(FIND_POSTS);
 
-  let posts = [];
-  if (findUsers != null) {
-    for (let i = findUsers.length - 1; i >= 0; i--) {
-      if (findUsers[i].posts) {
-        for (let j = findUsers[i].posts.length - 1; j >= 0; j--) {
-          posts.push({
-            ...findUsers[i].posts[j],
-            displayPicture: findUsers[i].displayPicture,
-            _id:findUsers[i]._id,
-            firstName:findUsers[i].firstName
-          });
-        }
-      }
-    }
-  }
+  let posts = data3?.findPosts || [];
+  // if (findUsers != null) {
+  //   for (let i = findUsers.length - 1; i >= 0; i--) {
+  //     if (findUsers[i].posts) {
+  //       for (let j = findUsers[i].posts.length - 1; j >= 0; j--) {
+  //         posts.push({
+  //           ...findUsers[i].posts[j],
+  //           displayPicture: findUsers[i].displayPicture,
+  //           _id:findUsers[i]._id,
+  //           firstName:findUsers[i].firstName
+  //         });
+  //       }
+  //     }
+  //   }
+  // }
+
+  console.log('-------------------------------------------------------')
+  console.log(posts)
+  console.log('-------------------------------------------------------')
+
   const [displaypic, setdisplaypic]= useState(findUser?.displayPicture)
 
   const [display, setdisplay]=useState('display-none')
@@ -249,6 +255,7 @@ export default function UserHome() {
           </div>
         </div>
       </div>
+      
       <Postschain key={tutu} posts={posts} />
       {/* <div id="thoughts-chain">
             {

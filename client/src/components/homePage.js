@@ -56,7 +56,6 @@ export default function HomePage() {
           <img
             src="./images/Having coffee with my dog (2).gif"
             alt=""
-            srcset=""
           ></img>
         </div>
       </div>
